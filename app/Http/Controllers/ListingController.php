@@ -19,7 +19,7 @@ class ListingController extends Controller
             // 'listings' =>Listing::latest()->get()
 
             // lets use  the following line to help the tag and search filtering process
-            'listings' =>Listing::latest()->filter(request(['tag', 'search']))->get()
+            'listings' =>Listing::latest()->filter(request(['tag', 'search']))->paginate(6)
 
         ]);
     }
