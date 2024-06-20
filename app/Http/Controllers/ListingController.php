@@ -8,9 +8,17 @@ use Illuminate\Http\Request;
 class ListingController extends Controller
 {
     //get and show all listings
-    public function index(){
+    public function index(Request $request){
+        // this dd function is used to read whats passing through the url
+        // dd(request('tag'));
+
         return view('listings.index', [
-            'listings' =>Listing::all()
+            //This gives the latest posts on top of the page
+            // 'listings' =>Listing::latest()->get()
+
+            // lets use  the following line to help the tag and search filtering process
+            'listings' =>Listing::latest()->filter(request(['tag', 'search']))->get()
+
         ]);
     }
 
